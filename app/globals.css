@@ -3,24 +3,89 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Bronze Lake Navy */
+  --color-bl-navy: #0C003C;
+
+  /* Bronze Lake Bronze Gradient Stops */
+  --color-bl-bronze-0: #6A381E;
+  --color-bl-bronze-25: #B06B3C;
+  --color-bl-bronze-50: #FEDE99;
+  --color-bl-bronze-75: #B77844;
+  --color-bl-bronze-100: #6A381E;
+
+  /* Bronze Lake Cream Scale */
+  --color-bl-cream-50: #FDFAF6;
+  --color-bl-cream-100: #FAF5ED;
+  --color-bl-cream-200: #F3EBD9;
+  --color-bl-cream-300: #EADFB8;
+  --color-bl-cream-400: #E0CFA1;
+  --color-bl-cream-500: #D6BF8A;
+  --color-bl-cream-600: #AD9668;
+  --color-bl-cream-700: #85704B;
+  --color-bl-cream-800: #5C4C33;
+  --color-bl-cream-900: #362D1F;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  
+  --color-bl-navy: var(--color-bl-navy);
+  
+  --color-bl-bronze-0: var(--color-bl-bronze-0);
+  --color-bl-bronze-25: var(--color-bl-bronze-25);
+  --color-bl-bronze-50: var(--color-bl-bronze-50);
+  --color-bl-bronze-75: var(--color-bl-bronze-75);
+  --color-bl-bronze-100: var(--color-bl-bronze-100);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-bl-cream-50: var(--color-bl-cream-50);
+  --color-bl-cream-100: var(--color-bl-cream-100);
+  --color-bl-cream-200: var(--color-bl-cream-200);
+  --color-bl-cream-300: var(--color-bl-cream-300);
+  --color-bl-cream-400: var(--color-bl-cream-400);
+  --color-bl-cream-500: var(--color-bl-cream-500);
+  --color-bl-cream-600: var(--color-bl-cream-600);
+  --color-bl-cream-700: var(--color-bl-cream-700);
+  --color-bl-cream-800: var(--color-bl-cream-800);
+  --color-bl-cream-900: var(--color-bl-cream-900);
+
+  --font-libre: var(--font-libre);
+  --font-archivo: var(--font-archivo);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bl-cream-50);
+  color: var(--color-bl-navy);
+  font-family: var(--font-archivo), sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-libre), serif;
+  color: var(--color-bl-navy);
+}
+
+/* Helper for bronze gradient text or bg */
+.bg-bl-bronze-gradient {
+  background: linear-gradient(90deg, 
+    var(--color-bl-bronze-0) 0%, 
+    var(--color-bl-bronze-25) 25%, 
+    var(--color-bl-bronze-50) 50%, 
+    var(--color-bl-bronze-75) 75%, 
+    var(--color-bl-bronze-100) 100%
+  );
+}
+
+.text-bl-bronze-gradient {
+  background: linear-gradient(90deg, 
+    var(--color-bl-bronze-0) 0%, 
+    var(--color-bl-bronze-25) 25%, 
+    var(--color-bl-bronze-50) 50%, 
+    var(--color-bl-bronze-75) 75%, 
+    var(--color-bl-bronze-100) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
