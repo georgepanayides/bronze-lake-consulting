@@ -4,17 +4,17 @@
   --background: #ffffff;
   --foreground: #171717;
 
-  /* Bronze Lake Navy */
+  /* Bronze Lake Navy TEXT COLOUR */
   --color-bl-navy: #0C003C;
 
-  /* Bronze Lake Bronze Gradient Stops */
+  /* Bronze Lake Bronze Gradient Stops ACCENT */
   --color-bl-bronze-0: #6A381E;
   --color-bl-bronze-25: #B06B3C;
   --color-bl-bronze-50: #FEDE99;
   --color-bl-bronze-75: #B77844;
   --color-bl-bronze-100: #6A381E;
 
-  /* Bronze Lake Cream Scale */
+  /* Bronze Lake Cream Scale BACKGROUNDS */
   --color-bl-cream-50: #FDFAF6;
   --color-bl-cream-100: #FAF5ED;
   --color-bl-cream-200: #F3EBD9;
@@ -52,17 +52,13 @@
 
   --font-libre: var(--font-libre);
   --font-archivo: var(--font-archivo);
+  --font-inconsolata: var(--font-inconsolata);
 }
 
 body {
   background: var(--color-bl-cream-50);
   color: var(--color-bl-navy);
   font-family: var(--font-archivo), sans-serif;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-libre), serif;
-  color: var(--color-bl-navy);
 }
 
 /* Helper for bronze gradient text or bg */

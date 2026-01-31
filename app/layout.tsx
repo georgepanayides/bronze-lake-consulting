@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Libre_Baskerville, Archivo } from "next/font/google";
+import { Libre_Baskerville, Archivo, Inconsolata } from "next/font/google";
 import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
 import "./globals.css";
 
 const libre = Libre_Baskerville({
@@ -12,6 +13,11 @@ const libre = Libre_Baskerville({
 const archivo = Archivo({
   subsets: ["latin"],
   variable: "--font-archivo",
+});
+
+const inconsolata = Inconsolata({
+  subsets: ["latin"],
+  variable: "--font-inconsolata",
 });
 
 export const metadata: Metadata = {
@@ -36,10 +42,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${libre.variable} ${archivo.variable} antialiased`}
+        className={`${libre.variable} ${archivo.variable} ${inconsolata.variable} antialiased`}
       >
         <Header navItems={nav_items} />
         {children}
+        <Footer />
       </body>
     </html>
   );

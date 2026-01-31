@@ -77,7 +77,7 @@ const OrderContent = () => (
 
 export function ProblemSolution() {
   return (
-    <section className="bg-cream-50 relative w-full overflow-hidden">
+    <section className="bg-cream-50 relative w-full overflow-hidden border-b border-bl-cream-200">
         {/* 3-Column Layout: 25% | 50% | 25% */}
         <div className="flex flex-col lg:flex-row w-full h-full">
             
@@ -103,7 +103,7 @@ export function ProblemSolution() {
                             after={<OrderContent />} 
                             initialPosition={50}
                         />
-                        <p className="text-bl-navy/60 font-archivo text-center pt-5">
+                        <p className="text-bl-navy/60 font-archivo text-center pt-5 pb-5">
                             Drag the slider to see how we transform operational chaos into streamlined success.
                         </p>
                     </div>

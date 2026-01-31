@@ -4,6 +4,7 @@ import { Testimonials } from "@/components/sections/shared/testimonials";
 import { CallToAction } from "@/components/sections/shared/cta";
 import { ServiceOverview } from "@/components/sections/service-overview";
 import { ProblemSolution } from "@/components/sections/shared/problem-solution";
+import { ProfessionalExperts } from "@/components/sections/professional-experts";
 
 export default function Home() {
   return (
@@ -11,7 +12,7 @@ export default function Home() {
       <Hero />
       <ServiceOverview />
       <ProblemSolution />
-      
+      <ProfessionalExperts />
 
       <BrandsTicker />
       <Testimonials />

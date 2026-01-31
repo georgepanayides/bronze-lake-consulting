@@ -16,16 +16,16 @@ export function DragSlider({ before, after, className, initialPosition = 50 }: D
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const handleMove = (event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent) => {
+  const handleMove = (event: MouseEvent | TouchEvent) => {
     if (!containerRef.current) return;
 
     const { left, width } = containerRef.current.getBoundingClientRect();
-    let clientX;
+    let clientX: number;
 
     if ('touches' in event) {
-      clientX = (event as any).touches[0].clientX;
+      clientX = event.touches[0].clientX;
     } else {
-      clientX = (event as any).clientX;
+      clientX = event.clientX;
     }
 
     const position = ((clientX - left) / width) * 100;
