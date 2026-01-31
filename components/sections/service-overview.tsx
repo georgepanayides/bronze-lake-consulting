@@ -1,6 +1,9 @@
 import { VerticalDrawers } from "@/components/ui/vertical-drawers";
 import { CheckCircle2, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { StrategyGraphic } from "@/components/graphics/services-graphics/StrategyGraphic";
+
+import { ReportingGraphic } from "@/components/graphics/services-graphics/ReportingGraphic";
 
 export function ServiceOverview() {
   
@@ -8,6 +11,7 @@ export function ServiceOverview() {
     {
       id: "strategy",
       title: "Strategy Consulting",
+      graphic: <StrategyGraphic />,
       description: "We partner with leadership to define clear paths forward, optimizing business models and operational frameworks for resilience and scale.",
       content: (
         <div className="grid grid-cols-1 gap-8">
@@ -56,6 +60,7 @@ export function ServiceOverview() {
     {
       id: "analytics",
       title: "Reporting & Analytics",
+      graphic: <ReportingGraphic />,
       description: "Transform raw data into strategic assets. We build intelligent reporting ecosystems that provide real-time clarity for decision makers.",
       content: (
         <div className="grid grid-cols-1 gap-8">

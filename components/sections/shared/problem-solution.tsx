@@ -89,10 +89,10 @@ export function ProblemSolution() {
             </div>
 
             {/* Middle Column (50%) - Content */}
-            <div className="w-full border-l border-r border-bl-cream-200 py-12">
+            <div className="w-full border-l border-r border-bl-cream-200 py-20">
                     <FadeIn>
                         <h2 className="text-xl font-libre text-bl-navy mb-4 text-center uppercase tracking-wider">
-                            From Ambiguity to <span className="text-bl-bronze-gradient">Impact</span>
+                            From Ambiguity to <span className="text-bl-bronze-75">Impact</span>
                         </h2>
                     </FadeIn>
 

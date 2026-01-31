@@ -1,11 +1,57 @@
 import { FadeIn } from "@/components/motion/fade-in";
 import { ArrowGrid } from "@/components/graphics/arrow-grid";
+import HeroGraphic, { type Notification } from "../graphics/HeroGraphic";
+
+const NOTIFICATIONS: Notification[] = [
+  {
+    id: 1,
+    title: "Profitability Surge",
+    message: "Your net profit is tracking 15% higher than last month.",
+    metric: "+15%",
+    type: "success",
+    delay: 500
+  },
+  {
+    id: 2,
+    title: "Pricing Opportunity",
+    message: "Analysis indicates you are undercharging vs market average.",
+    metric: "$2.4k/mo",
+    type: "warning",
+    delay: 2500
+  },
+  {
+    id: 3,
+    title: "Volume Risk Alert",
+    message: "Unit economics become uncompetitive at >10k quantities.",
+    type: "alert",
+    delay: 4500
+  },
+  {
+    id: 4,
+    title: "Untapped Revenue",
+    message: "Q3 Strategy: Secondary revenue stream is highly underutilised.",
+    metric: "High Potential",
+    type: "insight",
+    delay: 6500
+  },
+  {
+    id: 5,
+    title: "Operational Bottleneck",
+    message: "Fulfillment latency is currently restricting growth velocity.",
+    metric: "-12% Efficiency",
+    type: "alert",
+    delay: 8500
+  }
+];
 
 export function Hero() {
   return (
     <section className="relative w-full h-screen min-h-[700px] bg-bl-cream-50 overflow-hidden flex flex-col border-b border-bl-cream-200">
       {/* Background Pattern */}
       <ArrowGrid />
+      <div className="w-150 h-full absolute right-85">
+        <HeroGraphic notifications={NOTIFICATIONS} /> 
+      </div>
 
       {/* Main Content Container - Full Height */}
       <div className="container mx-auto h-full relative z-10 p-6 md:p-8 mb-16 flex flex-col justify-end">

@@ -9,6 +9,7 @@ interface DrawerItem {
   title: string;
   description: string;
   content: React.ReactNode;
+  graphic?: React.ReactNode;
 }
 
 interface VerticalDrawersProps {
@@ -84,12 +85,18 @@ export function VerticalDrawers({ items, className }: VerticalDrawersProps) {
                                     </div>
                                 </div>
 
-                                {/* Right Column: Animation Placeholder */}
+                                {/* Right Column: Graphic or Placeholder */}
                                 <div className="hidden lg:block w-1/3 h-full">
-                                    <div className="w-full h-full bg-bl-cream-50/50 rounded-sm border border-bl-cream-200 flex items-center justify-center relative overflow-hidden group hover:border-bl-bronze-25/20 transition-colors">
-                                        <div className="absolute inset-0 bg-bl-navy/5 pattern-grid-lg opacity-10" />
-                                        <span className="font-archivo text-bl-navy/20 uppercase tracking-widest text-xs z-10">Animation <br/> Placeholder</span>
-                                    </div>
+                                    {item.graphic ? (
+                                        <div className="w-full h-full overflow-hidden relative border-l border-bl-cream-200">
+                                            {item.graphic}
+                                        </div>
+                                    ) : (
+                                        <div className="w-full h-full bg-bl-cream-50/50 rounded-sm border border-bl-cream-200 flex items-center justify-center relative overflow-hidden group hover:border-bl-bronze-25/20 transition-colors">
+                                            <div className="absolute inset-0 bg-bl-navy/5 pattern-grid-lg opacity-10" />
+                                            <span className="font-archivo text-bl-navy/20 uppercase tracking-widest text-xs z-10">Animation <br/> Placeholder</span>
+                                        </div>
+                                    )}
                                 </div>
                            </div>
                         </div>
