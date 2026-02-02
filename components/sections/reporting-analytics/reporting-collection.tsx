@@ -1,3 +1,5 @@
+import { IntegrationNodesGraphic } from "@/components/graphics/illustrations/IntegrationNodesGraphic";
+
 const BENEFITS = [
 	"Real-time access to data for timely decisions.",
 	"Clearer understanding of business performance.",
@@ -23,6 +25,12 @@ export function ReportingCollection() {
 					</header>
 
 					<div className="lg:col-span-8">
+						<div className="mb-8">
+							<IntegrationNodesGraphic
+								heading="Data collection"
+								subheading="From source systems to usable insight"
+							/>
+						</div>
 						<div className="grid grid-cols-1 gap-8 border border-bl-cream-200 bg-white">
 							<div className="p-8 md:p-10">
 								<h3 className="text-sm font-archivo uppercase tracking-[0.2em] text-bl-bronze-75">

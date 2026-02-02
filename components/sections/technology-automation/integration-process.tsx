@@ -1,3 +1,5 @@
+import { IntegrationNodesGraphic } from "@/components/graphics/illustrations/IntegrationNodesGraphic";
+
 const PROBLEM_POINTS = [
   "Repetitive and error-prone tasks",
   "Lack of visibility into performance or KPIs",
@@ -45,6 +47,12 @@ export function IntegrationProcess() {
           </header>
 
           <div className="lg:col-span-8">
+            <div className="mb-8">
+              <IntegrationNodesGraphic
+                heading="Integration"
+                subheading="Systems connected, data unified"
+              />
+            </div>
             <div className="border border-bl-cream-200 bg-bl-cream-50/40">
               <div className="p-8 md:p-10">
                 <h3 className="text-sm font-archivo uppercase tracking-[0.2em] text-bl-bronze-75">

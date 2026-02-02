@@ -1,3 +1,5 @@
+import { RoadmapStepsGraphic } from "@/components/graphics/illustrations/RoadmapStepsGraphic";
+
 const PROBLEMS = [
 	"Unpredictable: you can’t anticipate resource requirements, cash flow needs, or bottlenecks.",
 	"Unprofitable: you expand volume without understanding costs, margins, or lifetime value.",
@@ -31,6 +33,9 @@ export function GrowthPlanning() {
 					</header>
 
 					<div className="lg:col-span-8">
+						<div className="mb-8">
+							<RoadmapStepsGraphic heading="Growth planning" subheading="A practical roadmap" />
+						</div>
 						<div className="border border-bl-cream-200 bg-white">
 							<div className="p-8 md:p-10">
 								<h3 className="text-sm font-archivo uppercase tracking-[0.2em] text-bl-bronze-75">

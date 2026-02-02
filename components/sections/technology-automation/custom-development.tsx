@@ -1,3 +1,5 @@
+import { IDEGraphic } from "@/components/graphics/illustrations/IDEGraphic";
+
 const PROBLEM_POINTS = [
   "Working around limitations rather than eliminating them",
   "Paying for features you never use",
@@ -41,6 +43,9 @@ export function CustomDevelopment() {
           </header>
 
           <div className="lg:col-span-8">
+            <div className="mb-8">
+              <IDEGraphic title="CUSTOM DEVELOPMENT" subtitle="Building what fits" />
+            </div>
             <div className="border border-bl-cream-200 bg-white">
               <div className="p-8 md:p-10">
                 <h3 className="text-sm font-archivo uppercase tracking-[0.2em] text-bl-bronze-75">
