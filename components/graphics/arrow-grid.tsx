@@ -1,10 +1,22 @@
-export function ArrowGrid() {
+import { useId } from "react";
+
+type ArrowGridProps = {
+  id?: string;
+};
+
+export function ArrowGrid({ id }: ArrowGridProps) {
+  const reactId = useId();
+  const safeId = (id ?? `arrow-grid-${reactId}`).replace(/:/g, "");
+  const patternId = `${safeId}-pattern`;
+  const maskId = `${safeId}-mask`;
+  const gradientId = `${safeId}-grad`;
+
   return (
     <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         {/* Define the single arrow pattern */}
         <pattern
-          id="arrow-pattern"
+          id={patternId}
           x="0"
           y="0"
           width="120"
@@ -22,14 +34,14 @@ export function ArrowGrid() {
         </pattern>
 
         {/* Define the mask to show only top-right area */}
-        <mask id="fade-mask">
+        <mask id={maskId}>
             {/* Radial gradient starting from top-right corner */}
-            <radialGradient id="grad-corner" cx="100%" cy="0%" r="70%" fx="100%" fy="0%">
+            <radialGradient id={gradientId} cx="100%" cy="0%" r="70%" fx="100%" fy="0%">
                 <stop offset="0%" stopColor="white" stopOpacity="1" />
                 <stop offset="50%" stopColor="white" stopOpacity="0.5" />
                 <stop offset="100%" stopColor="white" stopOpacity="0" />
             </radialGradient>
-            <rect width="100%" height="100%" fill="url(#grad-corner)" />
+            <rect width="100%" height="100%" fill={`url(#${gradientId})`} />
         </mask>
       </defs>
 
@@ -37,8 +49,8 @@ export function ArrowGrid() {
       <rect 
         width="100%" 
         height="100%" 
-        fill="url(#arrow-pattern)" 
-        mask="url(#fade-mask)" 
+        fill={`url(#${patternId})`} 
+        mask={`url(#${maskId})`} 
         className="text-bl-bronze-25 opacity-20" // Control color and base opacity here
       />
     </svg>

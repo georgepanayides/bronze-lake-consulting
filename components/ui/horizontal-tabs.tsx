@@ -27,7 +27,7 @@ export function HorizontalTabs({ tabs, className }: HorizontalTabsProps) {
       <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
         
         {/* Left Column: Vertical Control Buttons */}
-        <div className="flex flex-col lg:border-r border-bl-navy/10">
+        <div className="flex flex-col lg:border-r border-bl-cream-200">
           {tabs.map((tab, index) => (
             <button
               key={tab.id}
@@ -35,7 +35,7 @@ export function HorizontalTabs({ tabs, className }: HorizontalTabsProps) {
               className={cn(
                 "group relative text-left p-6 md:p-8 transition-all duration-300 outline-none flex-1 cursor-pointer",
                  // Apply border bottom to all except the last one to separate items
-                index !== tabs.length - 1 ? "border-b border-bl-navy/10" : "",
+                index !== tabs.length - 1 ? "border-b border-bl-cream-200" : "",
                 // Active State: Light Cream Background
                 activeTabId === tab.id
                   ? "bg-bl-cream-100" // Light theme

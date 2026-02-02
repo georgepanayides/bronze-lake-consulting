@@ -28,8 +28,8 @@ export default function HeroGraphic({ notifications }: HeroGraphicProps) {
         setVisibleItems((prev) => {
              // Newest items added to the BOTTOM (Drop down from the first)
              // Allow list to grow indefinitely (scrolling/fading handled by container)
-             const newList = [...prev, item.id];
-             return newList;
+             if (prev.includes(item.id)) return prev;
+             return [...prev, item.id];
         });
       }, index * 425);
     });

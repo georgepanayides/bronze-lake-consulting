@@ -2,8 +2,9 @@ import { VerticalDrawers } from "@/components/ui/vertical-drawers";
 import { CheckCircle2, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { StrategyGraphic } from "@/components/graphics/services-graphics/StrategyGraphic";
-
 import { ReportingGraphic } from "@/components/graphics/services-graphics/ReportingGraphic";
+import { TechnologyAutomationGraphic } from "@/components/graphics/services-graphics/AutomationGraphic";
+import { DigitalGrowthGraphic } from "@/components/graphics/services-graphics/DigitalGrowthGraphic";
 
 export function ServiceOverview() {
   
@@ -37,6 +38,7 @@ export function ServiceOverview() {
     {
       id: "digital",
       title: "Digital Growth",
+      graphic: <DigitalGrowthGraphic />,
       description: "Accelerate your market presence with data-driven digital initiatives that connect with audiences and drive measurable revenue growth.",
       content: (
         <div className="grid grid-cols-1 gap-8">
@@ -84,6 +86,7 @@ export function ServiceOverview() {
     {
       id: "tech",
       title: "Technology Automation",
+            graphic: <TechnologyAutomationGraphic />,
       description: "Streamline operations with bespoke automation tailored to your unique workflows, reducing manual effort and eliminating error.",
       content: (
         <div className="grid grid-cols-1 gap-8">

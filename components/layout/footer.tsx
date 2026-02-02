@@ -1,18 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import { ArrowGrid } from "../graphics/arrow-grid";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-bl-cream-50 border-t border-bl-navy/10">
+        <footer className="bg-bl-cream-50 border-t border-bl-cream-200">
       {/* Main "Bookcase" Grid */}
-      <div className="container mx-auto">
+    <div className="w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 min-h-[400px]">
-          
           {/* Column 1: Brand Identity */}
-          <div className="flex flex-col border-b md:border-b-0 border-bl-navy/10 lg:border-r p-8 md:p-12 justify-between">
+          <div className="flex flex-col border-b md:border-b-0 border-bl-cream-200 lg:border-r p-8 md:p-12 justify-between">
             <div className="space-y-6">
                 <Link href="/" className="inline-block group">
                     <div className="relative w-16 h-8 mb-4 opacity-100 transition-opacity duration-300">
@@ -41,17 +41,17 @@ export function Footer() {
                 </p>
             </div>
             
-            <div className="mt-12 pt-6 border-t border-bl-navy/5">
-                <p className="text-xs font-inconsolata text-bl-navy/40">
-                    EST. 2024 — AUCKLAND, NZ
+            <div className="mt-12 pt-6 border-t border-bl-cream-200">
+                <p className="text-xs font-archivo text-bl-navy/50 uppercase tracking-widest">
+                    EST. 2024, AUCKLAND, NZ
                 </p>
             </div>
           </div>
 
           {/* Column 2: Navigation (Sitemap) */}
-          <div className="flex flex-col border-b md:border-b-0 border-bl-navy/10 lg:border-r">
-             <div className="p-6 border-b border-bl-navy/5 bg-white/50 backdrop-blur-sm">
-                <span className="text-xs font-inconsolata text-bl-navy/40 uppercase tracking-widest">
+             <div className="flex flex-col border-b md:border-b-0 border-bl-cream-200 lg:border-r">
+                 <div className="p-6 border-b border-bl-cream-200 bg-white/45">
+                     <span className="text-xs font-archivo text-bl-navy/50 uppercase tracking-widest">
                     01 / Sitemap
                 </span>
              </div>
@@ -66,9 +66,9 @@ export function Footer() {
           </div>
 
           {/* Column 3: Expertise (Services) */}
-          <div className="flex flex-col border-b md:border-b-0 border-bl-navy/10 lg:border-r">
-             <div className="p-6 border-b border-bl-navy/5 bg-white/50 backdrop-blur-sm">
-                <span className="text-xs font-inconsolata text-bl-navy/40 uppercase tracking-widest">
+             <div className="flex flex-col border-b md:border-b-0 border-bl-cream-200 lg:border-r">
+                 <div className="p-6 border-b border-bl-cream-200 bg-white/45">
+                     <span className="text-xs font-archivo text-bl-navy/50 uppercase tracking-widest">
                     02 / Expertise
                 </span>
              </div>
@@ -81,40 +81,43 @@ export function Footer() {
              </div>
           </div>
 
-          {/* Column 4: Interest / Legal */}
-          <div className="flex flex-col justify-between bg-bl-navy text-bl-cream-50">
-             
+            {/* Column 4: Interest / Legal */}
+            <div className="relative flex flex-col justify-between bg-bl-navy overflow-hidden">
+                <ArrowGrid id="footer-right" />
+                <div className="relative z-10 flex flex-col justify-between h-full">
+        
              {/* CTA Block */}
              <div className="p-8 md:p-12 space-y-6">
-                 <h3 className="font-libre text-2xl leading-tight">
+                      <h3 className="font-libre text-2xl leading-tight text-bl-cream-50 uppercase tracking-tight">
                     Ready to clarify <br/> your direction?
                  </h3>
                  <Link 
                     href="/contact" 
-                    className="inline-flex items-center gap-3 text-sm font-inconsolata uppercase tracking-widest hover:text-bl-bronze-50 transition-colors duration-300"
+                          className="inline-flex items-center justify-between gap-3 border border-bl-cream-200/20 px-4 py-3 text-sm font-archivo uppercase tracking-widest text-bl-cream-200 hover:text-bl-bronze-75 transition-colors duration-300"
                  >
                     Start a conversation
-                    <ArrowUpRight className="w-4 h-4" />
+                    <ArrowUpRight className="w-4 h-4 text-bl-bronze-75" />
                  </Link>
              </div>
 
              {/* Footer Bottom / Legal */}
-             <div className="p-8 md:p-12 border-t border-white/10 space-y-4">
+             <div className="p-8 md:p-12 border-t border-bl-cream-200/25 space-y-4">
                 <div className="flex gap-4 mb-4">
                     {/* Socials placeholder */}
                     <SocialLink href="https://linkedin.com" label="LI" />
                     <SocialLink href="https://twitter.com" label="X" />
                 </div>
                 
-                <div className="space-y-2 text-[10px] font-inconsolata text-white/40 uppercase tracking-wider">
+                <div className="space-y-2 text-[10px] font-archivo text-bl-cream-200/50 uppercase tracking-wider">
                     <p>© {currentYear} Bronze Lake Consulting Ltd.</p>
                     <div className="flex gap-4">
-                        <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
-                        <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+                        <Link href="/privacy" className="hover:text-bl-navy transition-colors">Privacy</Link>
+                        <Link href="/terms" className="hover:text-bl-navy transition-colors">Terms of Service</Link>
                     </div>
                 </div>
              </div>
-          </div>
+                </div>
+             </div>
 
         </div>
       </div>
@@ -142,7 +145,7 @@ function SocialLink({ href, label }: { href: string, label: string }) {
             href={href}
             target="_blank"
             rel="noopener noreferrer" 
-            className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-xs font-inconsolata hover:bg-white hover:text-bl-navy transition-all duration-300"
+            className="w-8 h-8 rounded-[2px] border border-bl-cream-200/25 flex items-center justify-center text-xs font-archivo text-bl-cream-200/70 hover:text-bl-navy hover:bg-bl-cream-100 transition-all duration-300"
         >
             {label}
         </a>

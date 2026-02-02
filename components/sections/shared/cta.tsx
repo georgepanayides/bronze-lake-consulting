@@ -25,21 +25,19 @@ const DIAGNOSTIC_QUESTIONS: QuizQuestion[] = [
 
 export function CallToAction() {
   return (
-    <section className="py-12 md:py-24 bg-bl-cream-50 relative overflow-hidden">
-      
-      <div className="container mx-auto px-6 md:px-8 relative z-10 text-center max-w-7xl">
+        <section className="py-12 md:py-24 bg-bl-cream-50 relative overflow-hidden border-t border-bl-cream-200">
+            <div className="container mx-auto px-6 md:px-8 relative z-10 max-w-7xl">
         
         {/* Provocative Header - Clean, Editorial Style */}
-        <div className="max-w-4xl mx-auto mb-16">
+        <div className="max-w-4xl mx-auto mb-12 md:mb-16 text-center">
             <FadeIn>
                 <h2 className="text-2xl md:text-3xl font-libre text-bl-navy mb-6 tracking-wide uppercase">
                     Where is your business <br/>
                     <span className="text-bl-bronze-75">flying blind?</span>
                 </h2>
                 
-                <p className="text-sm md:text-base font-archivo text-bl-navy/80 uppercase tracking-widest leading-relaxed bg-white/50 backdrop-blur-sm max-w-2xl mx-auto">
-                    What is it you don&apos;t know that—if you did—would unlock profit? 
-                    Identify your primary challenge below.
+                <p className="text-sm md:text-base font-archivo text-bl-navy/80 leading-relaxed max-w-2xl mx-auto">
+                    Pick the statement that feels most true today and we’ll show the most direct way we can help.
                 </p>
             </FadeIn>
         </div>

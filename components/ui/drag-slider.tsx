@@ -89,7 +89,7 @@ export function DragSlider({ before, after, className, initialPosition = 50 }: D
         className="absolute top-0 bottom-0 w-1 bg-white z-30 shadow-[0_0_20px_rgba(0,0,0,0.2)] pointer-events-none"
         style={{ left: `${sliderPosition}%` }}
       >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center border-4 border-bl-bronze-50">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center border-4 border-bl-bronze-0/65">
           <MoveHorizontal className="w-5 h-5 text-bl-bronze-75" />
         </div>
       </div>

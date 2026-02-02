@@ -1,5 +1,6 @@
 import { HorizontalTabs } from "@/components/ui/horizontal-tabs";
 import { FadeIn } from "@/components/motion/fade-in";
+import { StrategyRoadmap } from "@/components/graphics/professional-expertise/StrategyRoadmap";
 import { 
     Network, 
     Cpu, 
@@ -12,46 +13,6 @@ import {
 import Image from "next/image";
 
 // --- Graphic Components for the Tabs ---
-
-function StrategyGraphic() {
-    return (
-        <div className="relative w-full max-w-sm aspect-square">
-            {/* Central Hub */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border border-bl-navy/20 rounded-full flex items-center justify-center">
-                <div className="w-32 h-32 bg-bl-navy/5 rounded-full flex items-center justify-center animate-pulse-slow">
-                     <Image
-                     src={"/icons/bl-brand-icon.svg"}
-                     alt="Bronze Lake Icon"
-                     width={220}
-                     height={180}
-                     className="object-cover" 
-                     />
-                    
-                </div>
-            </div>
-            
-            {/* Orbiting nodes */}
-            <div className="absolute top-0 right-10 p-3 bg-white shadow-lg rounded-lg border border-bl-cream-300">
-                <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 bg-bl-bronze-50 rounded-full" />
-                    <span className="text-xs font-bold text-bl-navy">Market Analysis</span>
-                </div>
-            </div>
-             <div className="absolute bottom-10 left-5 p-3 bg-white shadow-lg rounded-lg border border-bl-cream-300">
-                <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 bg-bl-navy rounded-full" />
-                    <span className="text-xs font-bold text-bl-navy">Capabilities</span>
-                </div>
-            </div>
-             <div className="absolute bottom-20 right-0 p-3 bg-white shadow-lg rounded-lg border border-bl-cream-300">
-                <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 bg-bl-bronze-75 rounded-full" />
-                    <span className="text-xs font-bold text-bl-navy">Competition</span>
-                </div>
-            </div>
-        </div>
-    );
-}
 
 function AnalyticsGraphic() {
     return (
@@ -145,7 +106,7 @@ export function ProfessionalExperts() {
       id: "strategy",
       title: "Strategic Blueprinting",
       description: "True strategy is a structured roadmap grounded in deep analysis. We move beyond intuition to define priorities that align leadership, optimize resource allocation, and position your business for sustainable competitive advantage.",
-      graphic: <StrategyGraphic />,
+      graphic: <StrategyRoadmap />,
     },
     {
       id: "analytics",
