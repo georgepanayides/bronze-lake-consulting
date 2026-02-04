@@ -1,155 +1,196 @@
 "use client";
 
-import { useMemo, useRef } from "react";
-import { motion, useInView, useReducedMotion } from "framer-motion";
-
-type Node = {
-	id: string;
-	label: string;
-	x: string;
-	y: string;
-};
+import Image from "next/image";
+import { useEffect, useMemo, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 
 type IntegrationNodesGraphicProps = {
 	heading?: string;
 	subheading?: string;
 };
 
+type IntegrationItem = {
+	id: string;
+	label: string;
+	initials: string;
+	iconSrc?: string;
+};
+
+const DEFAULT_INTEGRATIONS: IntegrationItem[] = [
+	{ id: "facebook", label: "Facebook", initials: "F", iconSrc: "/images/integrations/icons/Facebook.svg" },
+	{ id: "gmail", label: "Gmail", initials: "G", iconSrc: "/images/integrations/icons/gmail.svg" },
+	{ id: "google-ads", label: "Google Ads", initials: "GA", iconSrc: "/images/integrations/icons/google_ads.svg" },
+	{ id: "microsoft", label: "Microsoft", initials: "MS", iconSrc: "/images/integrations/icons/microsoft.svg" },
+	{ id: "excel", label: "Excel", initials: "X", iconSrc: "/images/integrations/icons/ms_excel.svg" },
+	{ id: "onedrive", label: "OneDrive", initials: "OD", iconSrc: "/images/integrations/icons/ms_onedrive.svg" },
+];
+
+const GRID_COLS = 12;
+const GRID_ROWS = 8;
+const GRID_CELL_COUNT = GRID_COLS * GRID_ROWS;
+
+type CellCoord = { col: number; row: number };
+
+const HUB_TARGET: CellCoord = { col: 6, row: 4 };
+
+const INTEGRATION_PLACEMENTS: Array<IntegrationItem & { position: CellCoord; placementClass: string }> = [
+	{ ...DEFAULT_INTEGRATIONS[0], position: { col: 2, row: 3 }, placementClass: "col-start-2 row-start-3" },
+	{ ...DEFAULT_INTEGRATIONS[1], position: { col: 4, row: 1 }, placementClass: "col-start-4 row-start-1" },
+	{ ...DEFAULT_INTEGRATIONS[2], position: { col: 10, row: 2 }, placementClass: "col-start-10 row-start-2" },
+	{ ...DEFAULT_INTEGRATIONS[3], position: { col: 12, row: 5 }, placementClass: "col-start-12 row-start-5" },
+	{ ...DEFAULT_INTEGRATIONS[4], position: { col: 3, row: 8 }, placementClass: "col-start-3 row-start-8" },
+	{ ...DEFAULT_INTEGRATIONS[5], position: { col: 9, row: 7 }, placementClass: "col-start-9 row-start-7" },
+];
+
+function toIndex({ col, row }: CellCoord) {
+	return (row - 1) * GRID_COLS + (col - 1);
+}
+
+function buildPath(from: CellCoord, to: CellCoord) {
+	const path: CellCoord[] = [];
+	let col = from.col;
+	let row = from.row;
+
+	path.push({ col, row });
+
+	while (col !== to.col) {
+		col += col < to.col ? 1 : -1;
+		path.push({ col, row });
+	}
+	while (row !== to.row) {
+		row += row < to.row ? 1 : -1;
+		path.push({ col, row });
+	}
+
+	return path;
+}
+
 export function IntegrationNodesGraphic({
-	heading = "Data collection",
-	subheading = "Systems connected, signals visible",
+	heading = "Integration",
+	subheading = "Systems connected, data unified",
 }: IntegrationNodesGraphicProps) {
-	const ref = useRef<HTMLDivElement | null>(null);
-	const isInView = useInView(ref, { once: true, amount: 0.35 });
 	const prefersReducedMotion = useReducedMotion();
+	const [tick, setTick] = useState(0);
 
-	const nodes = useMemo<Node[]>(
-		() => [
-			{ id: "crm", label: "CRM", x: "14%", y: "26%" },
-			{ id: "ads", label: "ADS", x: "18%", y: "70%" },
-			{ id: "site", label: "SITE", x: "50%", y: "16%" },
-			{ id: "billing", label: "BILLING", x: "82%", y: "30%" },
-			{ id: "ops", label: "OPS", x: "84%", y: "72%" },
-		],
-		[]
-	);
+	const paths = useMemo(() => {
+		return INTEGRATION_PLACEMENTS.map((integration) => buildPath(integration.position, HUB_TARGET));
+	}, []);
 
-	const hub = useMemo(() => ({ x: "50%", y: "56%" }), []);
+	const isComplete = useMemo(() => {
+		if (prefersReducedMotion) return true;
+		return paths.every((path, i) => {
+			const delay = i * 5;
+			return tick - delay >= path.length - 1;
+		});
+	}, [paths, prefersReducedMotion, tick]);
+
+	useEffect(() => {
+		if (prefersReducedMotion || isComplete) return;
+		const interval = window.setInterval(() => {
+			setTick((t) => t + 1);
+		}, 160);
+		return () => window.clearInterval(interval);
+	}, [isComplete, prefersReducedMotion]);
+
+	const litIndices = useMemo(() => {
+		if (prefersReducedMotion) return new Set<number>();
+		const set = new Set<number>();
+		paths.forEach((path, i) => {
+			const delay = i * 5;
+			const progress = Math.min(Math.max(tick - delay, 0), path.length - 1);
+			for (let j = 0; j <= progress; j += 1) {
+				set.add(toIndex(path[j]));
+			}
+		});
+		return set;
+	}, [paths, prefersReducedMotion, tick]);
 
 	return (
-		<div className="w-full h-full flex items-center justify-center">
-			<motion.div
-				ref={ref}
-				initial={{ opacity: 0, y: 8, scale: 0.99 }}
-				animate={isInView ? { opacity: 1, y: 0, scale: 1 } : undefined}
-				transition={{ duration: 0.6, ease: "easeOut" }}
-				className="relative w-full max-w-[520px] aspect-[16/10] bg-white border border-bl-cream-200 rounded-xl shadow-2xl shadow-bl-cream-200 overflow-hidden"
-			>
-				<div className="px-5 py-4 border-b border-bl-cream-200 bg-bl-cream-50">
-					<p className="text-[10px] font-archivo uppercase tracking-[0.2em] text-bl-navy/60">
-						{heading}
-					</p>
-					<p className="mt-1 text-sm font-libre uppercase tracking-wide text-bl-navy">
-						{subheading}
-					</p>
-				</div>
+		<div className="w-full">
+			<div className="relative w-full aspect-[3/2] overflow-hidden">
+				<span className="sr-only">{heading}: {subheading}</span>
+				{/* background grid */}
+				<div className="absolute inset-0 overflow-hidden">
+					<div className="grid h-full w-full grid-cols-12 grid-rows-8 gap-0 [&>div:nth-child(12n)]:border-r-0 [&>div:nth-last-child(-n+12)]:border-b-0">
+						{Array.from({ length: GRID_CELL_COUNT }).map((_, index) => {
+							const isAlt = (index + 1) % 3 === 0;
+							const isLit = litIndices.has(index);
 
-				<div className="relative h-full">
-					<div className="absolute inset-0 pointer-events-none opacity-[0.05] bg-[radial-gradient(var(--color-bl-navy)_1px,transparent_1px)] [background-size:22px_22px]" />
-
-					{/* Lines layer */}
-					<svg
-						className="absolute inset-0 w-full h-full pointer-events-none"
-						viewBox="0 0 100 62"
-						preserveAspectRatio="none"
-					>
-						{nodes.map((n, idx) => {
-							const x = parseFloat(n.x);
-							const y = parseFloat(n.y);
-							const hx = parseFloat(hub.x);
-							const hy = parseFloat(hub.y);
 							return (
-								<g key={n.id}>
-									<motion.line
-										x1={hx}
-										y1={hy}
-										x2={x}
-										y2={y}
-										stroke="currentColor"
-										className="text-bl-cream-200"
-										strokeWidth={0.8}
-										initial={{ pathLength: 0, opacity: 0 }}
-										animate={isInView ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
-										transition={{ duration: 0.7, delay: 0.05 + idx * 0.06, ease: "easeInOut" }}
-									/>
-
-									{/* moving dot */}
-									<motion.circle
-										cx={hx}
-										cy={hy}
-										r={0.9}
-										className="fill-bl-bronze-75"
-										animate={
-											isInView && !prefersReducedMotion
-												? { cx: [hx, x], cy: [hy, y], opacity: [0, 1, 0] }
-												: { opacity: 0 }
+								<div
+									key={index}
+									className={
+										"relative border-r border-b border-bl-cream-200 " +
+										(isAlt ? "bg-bl-cream-50/60" : "bg-white")
+									}
+								>
+									<div
+										className={
+											"absolute inset-0 transition-opacity duration-300 " +
+											(isLit ? "opacity-100" : "opacity-0")
 										}
-										transition={
-											isInView && !prefersReducedMotion
-												? {
-													duration: 2.6,
-													repeat: Infinity,
-													repeatDelay: 1.6,
-													delay: 0.9 + idx * 0.2,
-													ease: "easeInOut",
-												}
-												: undefined
-										}
-									/>
-								</g>
+									>
+										<div
+											className={
+												"absolute inset-[3px] rounded-[1px] bg-bl-bronze-75/30 " +
+												(isLit && !prefersReducedMotion ? "animate-pulse" : "")
+											}
+										/>
+									</div>
+								</div>
 							);
 						})}
-					</svg>
+					</div>
+				</div>
 
-					{/* Hub */}
-					<div
-						className="absolute"
-						style={{ left: hub.x, top: hub.y, transform: "translate(-50%, -50%)" }}
-					>
-						<motion.div
-							initial={{ opacity: 0, scale: 0.9 }}
-							animate={isInView ? { opacity: 1, scale: 1 } : undefined}
-							transition={{ duration: 0.35, ease: "easeOut", delay: 0.25 }}
-							className="w-16 h-16 rounded-full bg-white border border-bl-cream-200 shadow-xl shadow-bl-cream-200 flex items-center justify-center"
-						>
-							<div className="w-10 h-10 rounded-full bg-bl-cream-50 border border-bl-cream-200" />
-						</motion.div>
-						<p className="mt-3 text-center text-[10px] font-archivo uppercase tracking-[0.2em] text-bl-navy/60">
-							Warehouse
-						</p>
+				{/* overlay elements (hub + integrations) */}
+				<div className="absolute inset-0 grid grid-cols-12 grid-rows-8 gap-0">
+					{/* hub: Bronze Lake (2x2 cells) */}
+					<div className="col-start-6 row-start-4 col-span-2 row-span-2">
+						<div className="w-full h-full flex items-center justify-center">
+							<div className="w-[95%] h-[95%] rounded-[1px] bg-white border border-bl-cream-200 flex items-center justify-center shadow-[0_0_0_1px_rgba(0,0,0,0.03),0_0_22px_rgba(0,0,0,0.12)]">
+								<div className="relative w-[64%] h-[64%]">
+									<Image
+										src="/icons/bl-brand-icon.svg"
+										alt="Bronze Lake"
+										fill
+										sizes="100px"
+										className="object-contain drop-shadow-[0_0_8px_rgba(0,0,0,0.12)]"
+									/>
+								</div>
+							</div>
+						</div>
 					</div>
 
-					{/* Nodes */}
-					{nodes.map((n, idx) => (
+					{/* integration icons */}
+					{INTEGRATION_PLACEMENTS.map((integration) => (
 						<div
-							key={n.id}
-							className="absolute"
-							style={{ left: n.x, top: n.y, transform: "translate(-50%, -50%)" }}
+							key={integration.id}
+							className={integration.placementClass}
 						>
-							<motion.div
-								initial={{ opacity: 0, scale: 0.9, y: 4 }}
-								animate={isInView ? { opacity: 1, scale: 1, y: 0 } : undefined}
-								transition={{ duration: 0.35, delay: 0.25 + idx * 0.06, ease: "easeOut" }}
-								className="px-3 py-2 rounded-lg bg-white border border-bl-cream-200 shadow-sm shadow-bl-cream-200"
-							>
-								<p className="text-[10px] font-archivo uppercase tracking-[0.2em] text-bl-navy/70">
-									{n.label}
-								</p>
-							</motion.div>
+							<div className="w-full h-full flex items-center justify-center">
+								{integration.iconSrc ? (
+									<div className="relative w-[95%] h-[95%] rounded-[1px] overflow-hidden bg-white border border-bl-cream-200 shadow-[0_0_0_1px_rgba(0,0,0,0.03),0_0_18px_rgba(0,0,0,0.10)]">
+										<Image
+											src={integration.iconSrc}
+											alt={integration.label}
+											fill
+											sizes="45px"
+											className="object-contain drop-shadow-[0_0_6px_rgba(0,0,0,0.10)]"
+										/>
+									</div>
+								) : (
+									<div className="w-[95%] h-[95%] rounded-[1px] bg-white border border-bl-cream-200 flex items-center justify-center">
+										<span className="text-xs font-archivo uppercase tracking-[0.2em] text-bl-navy/70">
+											{integration.initials}
+										</span>
+									</div>
+								)}
+							</div>
 						</div>
 					))}
 				</div>
-			</motion.div>
+			</div>
 		</div>
 	);
 }
