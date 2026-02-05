@@ -1,4 +1,4 @@
-import { HorizontalTabs } from "@/components/ui/horizontal-tabs";
+import { HorizontalTabs } from "@/components/ui/veritcal-tabs";
 import { FadeIn } from "@/components/motion/fade-in";
 import { StrategyRoadmap } from "@/components/graphics/professional-expertise/StrategyRoadmap";
 import { ReportingGraphicTabs } from "@/components/graphics/professional-expertise/ReportingTabsGraphic";

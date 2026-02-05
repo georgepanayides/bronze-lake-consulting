@@ -21,6 +21,7 @@ These rules are mandatory. Do not suggest alternatives unless explicitly asked.
 ### Layout & Structure
 - Use a **simple, grid-based layout** to represent organisation and clarity.
 - Avoid overly decorative or chaotic layouts.
+- When using section separators (`border-t`, `border-b`), apply borders to a **full-width wrapper**, and keep content inside a `container mx-auto max-w-7xl` child.
 
 ---
 
@@ -74,6 +75,8 @@ Do not place content generation inside client components unless explicitly requi
 - Avoid premature abstraction.
 - Components should do one thing well.
 - UI components should not contain business logic.
+- ALL reusable UI components MUST be placed in `components/ui/*` (client or server as appropriate).
+- Section components under `components/sections/*` should only compose UI and pass content via props.
 
 ---
 
