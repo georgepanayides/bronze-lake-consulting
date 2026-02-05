@@ -5,63 +5,63 @@ import { motion, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
-export function ReportingGraphic() {
+export function ReportingGraphicTabs() {
     const dashboardRef = useRef<HTMLDivElement | null>(null);
     const isInView = useInView(dashboardRef, { once: true, amount: 0.35 });
 
   return (
-        <div className="w-90 h-full flex items-center justify-center overflow-hidden relative">
+                <div className="w-300 h-full flex items-center justify-center overflow-hidden relative">
       {/* The "Zoomed In" Dashboard Container - Position Preserved */}
         <motion.div
                                 ref={dashboardRef}
                 initial={{ opacity: 0, y: 6, scale: 0.995 }}
                                 animate={isInView ? { opacity: 1, y: 0, scale: 1 } : undefined}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="absolute top-5 left-5 w-[140%] h-[140%] md:w-[130%] md:h-[130%] bg-white rounded-xl border border-bl-cream-200 flex flex-col overflow-hidden shadow-2xl shadow-bl-cream-200"
+                                className="absolute top-5 left-5 w-[140%] h-[140%] md:w-[130%] md:h-[130%] bg-white rounded-xl border border-bl-cream-200 flex flex-col overflow-hidden shadow-2xl shadow-bl-cream-200"
         >
         
         {/* --- Top Navigation Bar --- */}
-                <div className="h-12 border-b border-bl-cream-200 flex items-center justify-between px-2.5 bg-white z-10 shrink-0">
+                                <div className="h-14 border-b border-bl-cream-200 flex items-center justify-between px-4 bg-white z-10 shrink-0">
             {/* Start: Branded Icon + Title */}
-            <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-2">
                 <Image
                 src={"/icons/bl-brand-icon.svg"}
                 alt=""
                 width={220}
                 height={160}
-                className="w-9 h-7 -rotate-15"
+                                className="w-10 h-8 -rotate-15"
                 />
                 <div className="flex flex-col gap-0.5 opacity-40 grayscale">
-                     <h2 className="font-libre uppercase tracking-widest text-bl-navy text-xs">Bronze Lake</h2>
+                                         <h2 className="font-libre uppercase tracking-widest text-bl-navy text-sm">Bronze Lake</h2>
                 </div>
             </div>
 
             {/* End: (Right nav removed as requested) */}
-            <div className="flex gap-1.5 opacity-20">
-                <div className="w-5 h-5 bg-gray-100 rounded-full" />
-                <div className="w-5 h-5 bg-gray-100 rounded-full" />
+            <div className="flex gap-2 opacity-20">
+                <div className="w-6 h-6 bg-gray-100 rounded-full" />
+                <div className="w-6 h-6 bg-gray-100 rounded-full" />
             </div>
         </div>
 
         {/* --- Dashboard Body --- */}
         <div className="flex-1 flex bg-bl-cream-50/70">
             {/* Main Content Area - Compact Mode */}
-            <div className="flex-1 p-4 overflow-hidden">
+            <div className="flex-1 p-6 overflow-hidden">
                 <div className="h-full min-h-0 flex flex-col gap-1">
                     
                     {/* Header: Compact (flex so it doesn't reserve row height) */}
                     <div className="flex items-start justify-between gap-2 shrink-0">
                         <div className="min-w-0 mb-2">
-                            <h2 className="text-sm font-libre font-bold text-bl-navy tracking-tight leading-none">Q3 Performance</h2>
-                            <p className="text-[9px] font-archivo text-bl-navy/40 mt-3 leading-none uppercase tracking-wider">Real-time metrics overview</p>
+                            <h2 className="text-base font-libre font-bold text-bl-navy tracking-tight leading-none">Q3 Performance</h2>
+                            <p className="text-[10px] font-archivo text-bl-navy/45 mt-2 leading-none uppercase tracking-wider">Real-time metrics overview</p>
                         </div>
                         <div className="shrink-0">
-                             <div className="px-1.5 py-0.5 rounded border border-bl-cream-200 text-[7px] font-archivo font-medium text-bl-navy/50 bg-white shadow-sm uppercase tracking-wider">Export</div>
+                             <div className="px-2 py-1 rounded border border-bl-cream-200 text-[8px] font-archivo font-medium text-bl-navy/55 bg-white shadow-sm uppercase tracking-wider">Export</div>
                         </div>
                     </div>
 
                     {/* KPI Row (flex, tighter) */}
-                    <div className="flex gap-2 shrink-0 mb-1">
+                    <div className="flex gap-3 shrink-0 mb-2">
                         <motion.div className="flex-1 min-w-0" initial={{ opacity: 0, y: 3 }} animate={isInView ? { opacity: 1, y: 0 } : undefined} transition={{ delay: 0.05, duration: 0.4, ease: "easeOut" }}>
                             <KpiCardCompact label="Revenue" value="$4.2M" change="+12%" trend="up" />
                         </motion.div>
@@ -77,15 +77,15 @@ export function ReportingGraphic() {
                     </div>
 
                     {/* Middle Row */}
-                    <div className="flex-[2] min-h-0 max-h-44 flex gap-2">
+                    <div className="flex-[2] min-h-0 max-h-56 flex gap-3">
                         {/* Main Graph */}
                         <motion.div
                             whileHover={{ y: -1 }}
                             transition={{ duration: 0.25, ease: "easeOut" }}
-                            className="flex-[1] max-w-62 bg-white rounded-[2px] border border-bl-cream-200 p-2 shadow-sm shadow-bl-cream-200 flex flex-col overflow-hidden"
+                            className="flex-[1] max-w-72 bg-white rounded-[2px] border border-bl-cream-200 p-3 shadow-sm shadow-bl-cream-200 flex flex-col overflow-hidden"
                         >
                             <div className="flex items-center justify-between mb-1 shrink-0">
-                                <h3 className="font-archivo font-semibold text-bl-navy/60 text-[8px] uppercase tracking-wider leading-none">Revenue Trend</h3>
+                                <h3 className="font-archivo font-semibold text-bl-navy/60 text-[10px] uppercase tracking-wider leading-none">Revenue Trend</h3>
                             </div>
                             <div className="flex-1 min-h-0 relative w-full">
                                 <motion.div
@@ -100,24 +100,24 @@ export function ReportingGraphic() {
                         </motion.div>
 
                         {/* Right Stack */}
-                        <div className="flex-1 min-w-0 flex flex-col gap-2 min-h-0">
+                        <div className="flex-1 min-w-0 flex flex-col gap-3 min-h-0">
                             <motion.div
                                 whileHover={{ y: -1 }}
                                 transition={{ duration: 0.25, ease: "easeOut" }}
-                                className="bg-white rounded-[2px] border border-bl-cream-200 p-1.5 shadow-sm shadow-bl-cream-200 flex items-center gap-2 flex-1 min-h-0"
+                                className="bg-white rounded-[2px] border border-bl-cream-200 p-2.5 shadow-sm shadow-bl-cream-200 flex items-center gap-3 flex-1 min-h-0"
                             >
-                                <div className="h-11 w-11 shrink-0">
+                                <div className="h-14 w-14 shrink-0">
                                     <DonutChart animate={isInView} />
                                 </div>
                                 <div className="min-w-0 flex-1">
-                                    <h4 className="text-[7px] font-archivo font-semibold text-bl-navy/60 leading-none uppercase tracking-wider">Distribution</h4>
-                                    <div className="mt-1 space-y-0.5">
-                                        <div className="flex items-center justify-between text-[6.5px] text-bl-navy/45 font-archivo uppercase tracking-wider">
-                                            <div className="flex items-center gap-1 min-w-0"><div className="w-1 h-1 bg-bl-bronze-75 rounded-full"/><span className="truncate">Mobile</span></div>
+                                    <h4 className="text-[9px] font-archivo font-semibold text-bl-navy/60 leading-none uppercase tracking-wider">Distribution</h4>
+                                    <div className="mt-2 space-y-1">
+                                        <div className="flex items-center justify-between text-[8px] text-bl-navy/45 font-archivo uppercase tracking-wider">
+                                            <div className="flex items-center gap-1.5 min-w-0"><div className="w-1.5 h-1.5 bg-bl-bronze-75 rounded-full"/><span className="truncate">Mobile</span></div>
                                             <span className="shrink-0">65%</span>
                                         </div>
-                                        <div className="flex items-center justify-between text-[6.5px] text-bl-navy/45 font-archivo uppercase tracking-wider">
-                                            <div className="flex items-center gap-1 min-w-0"><div className="w-1 h-1 bg-bl-navy/40 rounded-full"/><span className="truncate">Desktop</span></div>
+                                        <div className="flex items-center justify-between text-[8px] text-bl-navy/45 font-archivo uppercase tracking-wider">
+                                            <div className="flex items-center gap-1.5 min-w-0"><div className="w-1.5 h-1.5 bg-bl-navy/40 rounded-full"/><span className="truncate">Desktop</span></div>
                                             <span className="shrink-0">35%</span>
                                         </div>
                                     </div>
@@ -127,9 +127,9 @@ export function ReportingGraphic() {
                             <motion.div
                                 whileHover={{ y: -1 }}
                                 transition={{ duration: 0.25, ease: "easeOut" }}
-                                className="flex-1 min-h-0 bg-white rounded-[2px] border border-bl-cream-200 p-1.5 shadow-sm shadow-bl-cream-200 flex flex-col justify-center"
+                                className="flex-1 min-h-0 bg-white rounded-[2px] border border-bl-cream-200 p-2.5 shadow-sm shadow-bl-cream-200 flex flex-col justify-center"
                             >
-                                <div className="space-y-0.5">
+                                <div className="space-y-1">
                                     <SourceRow label="Direct" val="45%" color="bg-bl-bronze-75" />
                                     <SourceRow label="Social" val="32%" color="bg-bl-bronze-50" />
                                     <SourceRow label="Organic" val="23%" color="bg-bl-navy/35" />
@@ -139,13 +139,13 @@ export function ReportingGraphic() {
                     </div>
 
                     {/* Bottom Row */}
-                    <div className="flex-1 max-h-32 flex gap-2 mt-1">
+                    <div className="flex-1 max-h-40 flex gap-3 mt-2">
                         <motion.div
                             whileHover={{ y: -1 }}
                             transition={{ duration: 0.25, ease: "easeOut" }}
-                            className="flex-[1] min-w-0 bg-white rounded-[2px] border border-bl-cream-200 p-1.5 shadow-sm shadow-bl-cream-200 flex flex-col min-h-0"
+                            className="flex-[1] min-w-0 bg-white rounded-[2px] border border-bl-cream-200 p-2.5 shadow-sm shadow-bl-cream-200 flex flex-col min-h-0"
                         >
-                             <h4 className="text-[7px] font-archivo font-medium text-bl-navy/45 mb-0.5 leading-none shrink-0 uppercase tracking-wider">Regional Heatmap</h4>
+                             <h4 className="text-[9px] font-archivo font-medium text-bl-navy/45 mb-1 leading-none shrink-0 uppercase tracking-wider">Regional Heatmap</h4>
                              <div className="flex-1 min-h-0">
                                 <div className="relative h-full w-full bg-bl-cream-50 rounded border border-bl-cream-200 overflow-hidden">
                                     <div className="absolute inset-0 opacity-[0.08] bg-[linear-gradient(var(--color-bl-navy)_1px,transparent_1px),linear-gradient(90deg,var(--color-bl-navy)_1px,transparent_1px)] bg-[size:18px_18px]" />
@@ -187,7 +187,7 @@ export function ReportingGraphic() {
                                         />
                                     </motion.div>
 
-                                    <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-white to-transparent pointer-events-none opacity-80" />
+                                    <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent pointer-events-none opacity-80" />
                                 </div>
                              </div>
                         </motion.div>
@@ -195,9 +195,9 @@ export function ReportingGraphic() {
                         <motion.div
                             whileHover={{ y: -1 }}
                             transition={{ duration: 0.25, ease: "easeOut" }}
-                            className="flex-[1] min-w-0 bg-white rounded-[2px] border border-bl-cream-200 p-1.5 shadow-sm shadow-bl-cream-200 flex flex-col min-h-0"
+                               className="flex-[1] min-w-0 bg-white rounded-[2px] border border-bl-cream-200 p-2.5 shadow-sm shadow-bl-cream-200 flex flex-col min-h-0"
                         >
-                             <h4 className="text-[7px] font-archivo font-medium text-bl-navy/45 mb-2 leading-none shrink-0 uppercase tracking-wider">Conversions</h4>
+                                <h4 className="text-[9px] font-archivo font-medium text-bl-navy/45 mb-2 leading-none shrink-0 uppercase tracking-wider">Conversions</h4>
                              <div className="flex-1 min-h-0">
                                           <ConversionMiniChart animate={isInView} />
                              </div>
@@ -206,10 +206,10 @@ export function ReportingGraphic() {
                          <motion.div
                             whileHover={{ y: -1 }}
                             transition={{ duration: 0.25, ease: "easeOut" }}
-                                     className="flex-[2] min-w-0 bg-white rounded-[2px] border border-bl-cream-200 p-1.5 shadow-sm shadow-bl-cream-200 flex flex-col min-h-0"
+                                     className="flex-[2] min-w-0 bg-white rounded-[2px] border border-bl-cream-200 p-2.5 shadow-sm shadow-bl-cream-200 flex flex-col min-h-0"
                          >
-                             <h4 className="text-[7px] font-archivo font-medium text-bl-navy/45 mb-0.5 leading-none shrink-0 uppercase tracking-wider">Team Velocity</h4>
-                             <div className="flex-1 min-h-0 flex items-end gap-[2px] border-b border-bl-cream-200">
+                             <h4 className="text-[9px] font-archivo font-medium text-bl-navy/45 mb-1 leading-none shrink-0 uppercase tracking-wider">Team Velocity</h4>
+                             <div className="flex-1 min-h-0 flex items-end gap-[3px] border-b border-bl-cream-200">
                                  {[40, 65, 45, 80, 55, 70, 90, 60, 75, 50, 85].map((h, i) => (
                                      <motion.div 
                                         key={i}
@@ -249,13 +249,13 @@ function KpiCardCompact({ label, value, change, trend, good = true }: KpiCardCom
         <motion.div
             whileHover={{ y: -1 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="bg-white rounded-[2px] border border-bl-cream-200 px-1.5 py-1 shadow-sm shadow-bl-cream-200 flex flex-col justify-between h-[46px]"
+            className="bg-white rounded-[2px] border border-bl-cream-200 px-2.5 py-2 shadow-sm shadow-bl-cream-200 flex flex-col justify-between h-[60px]"
         >
-            <span className="text-[7px] font-archivo font-medium text-bl-navy/45 uppercase tracking-wider leading-none">{label}</span>
+            <span className="text-[8px] font-archivo font-medium text-bl-navy/45 uppercase tracking-wider leading-none">{label}</span>
             <div className="flex items-baseline gap-1 leading-none">
-                <span className="text-[12px] font-libre font-bold text-bl-navy tracking-tight">{value}</span>
+                <span className="text-[14px] font-libre font-bold text-bl-navy tracking-tight">{value}</span>
             </div>
-            <div className={cn("inline-flex items-center text-[7px] font-medium gap-0.5 leading-none", trendColor)}>
+            <div className={cn("inline-flex items-center text-[8px] font-medium gap-0.5 leading-none", trendColor)}>
                 <span>{trend === "up" ? '↑' : '↓'}</span>
                 <span>{change}</span>
             </div>
@@ -271,9 +271,9 @@ type SourceRowProps = {
 
 function SourceRow({ label, val, color }: SourceRowProps) {
     return (
-        <div className="flex items-center justify-between text-[7px] leading-none">
-            <div className="flex items-center gap-1.5">
-                <div className={cn("w-1 h-1 rounded-full", color)} />
+        <div className="flex items-center justify-between text-[8px] leading-none">
+            <div className="flex items-center gap-2">
+                <div className={cn("w-1.5 h-1.5 rounded-full", color)} />
                 <span className="text-bl-navy/55 font-archivo uppercase tracking-wider">{label}</span>
             </div>
             <span className="font-semibold text-bl-navy">{val}</span>
@@ -321,7 +321,7 @@ function BarTrendChart({ animate }: { animate: boolean }) {
             </div>
 
             {/* micro labels */}
-            <div className="mt-1 flex justify-between text-[6px] text-gray-300 leading-none">
+            <div className="mt-2 flex justify-between text-[7px] text-bl-navy/30 leading-none">
                 <span>Apr</span>
                 <span>May</span>
                 <span>Jun</span>
@@ -351,7 +351,7 @@ function ConversionMiniChart({ animate }: { animate: boolean }) {
                     />
                 ))}
             </div>
-            <div className="mt-1 flex items-center justify-between text-[6px] text-gray-300 leading-none shrink-0">
+            <div className="mt-2 flex items-center justify-between text-[7px] text-bl-navy/30 leading-none shrink-0">
                 <span>Leads</span>
                 <span>CVR</span>
             </div>

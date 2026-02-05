@@ -85,15 +85,41 @@ export function ChaosGraphic() {
                         animate={{
                             x: [0, p.dx, -p.dx * 0.55, 0],
                             y: [0, p.dy, -p.dy * 0.4, 0],
-                            rotateX: [p.rx, p.rx + 160, p.rx + 340],
-                            rotateY: [p.ry, p.ry - 180, p.ry - 360],
-                            rotateZ: [p.rz, p.rz + 40, p.rz - 30, p.rz],
+                            rotateX: [p.rx, p.rx + 360],
+                            rotateY: [p.ry, p.ry - 360],
+                            rotateZ: [p.rz, p.rz + 360],
                         }}
                         transition={{
-                            duration: p.d,
-                            repeat: Infinity,
-                            ease: EASE_IN_OUT,
-                            delay: p.delay,
+                            x: {
+                                duration: p.d,
+                                repeat: Infinity,
+                                ease: EASE_IN_OUT,
+                                delay: p.delay,
+                            },
+                            y: {
+                                duration: p.d,
+                                repeat: Infinity,
+                                ease: EASE_IN_OUT,
+                                delay: p.delay,
+                            },
+                            rotateX: {
+                                duration: p.d,
+                                repeat: Infinity,
+                                ease: "linear",
+                                delay: p.delay,
+                            },
+                            rotateY: {
+                                duration: p.d,
+                                repeat: Infinity,
+                                ease: "linear",
+                                delay: p.delay,
+                            },
+                            rotateZ: {
+                                duration: p.d,
+                                repeat: Infinity,
+                                ease: "linear",
+                                delay: p.delay,
+                            },
                         }}
                     >
                         <div className="absolute inset-1 border border-bl-cream-200/70" />

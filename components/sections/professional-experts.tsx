@@ -1,101 +1,9 @@
 import { HorizontalTabs } from "@/components/ui/horizontal-tabs";
 import { FadeIn } from "@/components/motion/fade-in";
 import { StrategyRoadmap } from "@/components/graphics/professional-expertise/StrategyRoadmap";
-import { 
-    Network, 
-    Cpu, 
-    Layers, 
-    ArrowUpRight,
-    Search,
-    Database,
-    Binary
-} from "lucide-react";
-import Image from "next/image";
-
-// --- Graphic Components for the Tabs ---
-
-function AnalyticsGraphic() {
-    return (
-        <div className="w-full h-full flex flex-col justify-center gap-4 max-w-sm mx-auto p-4">
-             {/* Abstract Bar Chart */}
-             <div className="flex items-end justify-between h-40 gap-2">
-                 <div className="w-full bg-bl-navy/10 rounded-t-sm h-[40%]" />
-                 <div className="w-full bg-bl-navy/20 rounded-t-sm h-[60%]" />
-                 <div className="w-full bg-bl-navy/10 rounded-t-sm h-[30%]" />
-                 <div className="w-full bg-bl-bronze-50 rounded-t-sm h-[85%] relative shadow-lg">
-                      <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-white px-2 py-1 rounded shadow text-xs font-bold text-bl-bronze-75 mb-2">
-                        +124%
-                      </div>
-                 </div>
-                 <div className="w-full bg-bl-navy/10 rounded-t-sm h-[50%]" />
-             </div>
-             
-             {/* Data Points */}
-             <div className="grid grid-cols-2 gap-4 mt-4">
-                 <div className="bg-white p-3 rounded border border-bl-cream-300 flex items-center gap-3">
-                     <Search className="w-5 h-5 text-bl-navy/40" />
-                     <div className="h-2 w-16 bg-bl-navy/10 rounded" />
-                 </div>
-                 <div className="bg-white p-3 rounded border border-bl-cream-300 flex items-center gap-3">
-                     <Database className="w-5 h-5 text-bl-navy/40" />
-                     <div className="h-2 w-12 bg-bl-navy/10 rounded" />
-                 </div>
-             </div>
-        </div>
-    );
-}
-
-function AutomationGraphic() {
-    return (
-        <div className="relative w-full max-w-sm h-64 flex items-center justify-center">
-            {/* Connecting Lines */}
-            <svg className="absolute inset-0 w-full h-full text-bl-bronze-50/30" stroke="currentColor" strokeWidth="2">
-                <line x1="20%" y1="50%" x2="50%" y2="50%" />
-                <line x1="50%" y1="50%" x2="80%" y2="50%" />
-            </svg>
-
-            {/* Nodes */}
-            <div className="absolute left-[10%] bg-white p-4 rounded-xl shadow-lg border border-bl-cream-300 z-10">
-                <Binary className="w-8 h-8 text-bl-navy/40" />
-            </div>
-
-            <div className="absolute left-[50%] -translate-x-1/2 bg-bl-navy p-4 rounded-full shadow-xl z-20 ring-4 ring-bl-cream-100">
-                <Cpu className="w-10 h-10 text-white animate-spin-slow" />
-            </div>
-
-            <div className="absolute right-[10%] bg-white p-4 rounded-xl shadow-lg border border-bl-bronze-50 z-10">
-                <ArrowUpRight className="w-8 h-8 text-bl-bronze-50" />
-            </div>
-        </div>
-    );
-}
-
-function CustomDevGraphic() {
-    return (
-        <div className="w-full max-w-sm space-y-3 relative">
-            {/* Stacked Layers */}
-            <div className="h-16 bg-white rounded-lg shadow-sm border border-bl-cream-300 w-[90%] mx-auto translate-y-4 opacity-50" />
-            <div className="h-16 bg-white rounded-lg shadow-md border border-bl-cream-300 w-[95%] mx-auto translate-y-2 opacity-80" />
-            
-            {/* Main Top Layer */}
-            <div className="h-40 bg-bl-navy rounded-lg shadow-xl border border-bl-navy flex flex-col p-4 relative z-10 overflow-hidden">
-                <div className="flex gap-2 mb-4">
-                    <div className="w-3 h-3 rounded-full bg-red-400" />
-                    <div className="w-3 h-3 rounded-full bg-amber-400" />
-                    <div className="w-3 h-3 rounded-full bg-green-400" />
-                </div>
-                <div className="flex-1 space-y-2">
-                    <div className="h-2 w-3/4 bg-white/10 rounded" />
-                    <div className="h-2 w-1/2 bg-white/10 rounded" />
-                    <div className="h-2 w-full bg-white/5 rounded" />
-                    <div className="h-2 w-2/3 bg-white/5 rounded" />
-                </div>
-                
-                <Layers className="absolute bottom-4 right-4 text-bl-bronze-50 w-12 h-12 opacity-20" />
-            </div>
-        </div>
-    );
-}
+import { ReportingGraphicTabs } from "@/components/graphics/professional-expertise/ReportingTabsGraphic";
+import { AutomationStepsGraphic } from "@/components/graphics/professional-expertise/AutomationStepsGraphic";
+import { BespokeArchGraphic } from "@/components/graphics/professional-expertise/BespokeArch";
 
 // --- Main Section Component ---
 
@@ -109,22 +17,22 @@ export function ProfessionalExperts() {
       graphic: <StrategyRoadmap />,
     },
     {
-      id: "analytics",
-      title: "Data Intelligence",
-      description: "We employ advanced analytics to uncover hidden opportunities and operational blind spots. By turning raw data into clear, actionable insights through custom reporting, we eliminate guesswork and drive enhanced performance.",
-      graphic: <AnalyticsGraphic />,
+            id: "reporting",
+            title: "Reporting Intelligence",
+            description: "We build clear reporting systems that turn fragmented data into a single source of truth. From KPI design to dashboard delivery, we create a measurement layer leadership can trust.",
+          graphic: <ReportingGraphicTabs />,
     },
     {
       id: "automation",
       title: "Automated Precision",
       description: "Manual tracking is prone to error and waste. We deploy AI-driven automation and real-time KPI systems that streamline operations, saving hours of labor while ensuring pinpoint accuracy and instant feedback loops.",
-      graphic: <AutomationGraphic />,
+            graphic: <AutomationStepsGraphic />,
     },
     {
       id: "custom-dev",
       title: "Bespoke Architecture",
       description: "When off-the-shelf software becomes a constraint, we architect purpose-built solutions. From custom dashboards to complex integration layers, we code software that fits your business model, rather than forcing you to adapt to generic tools.",
-      graphic: <CustomDevGraphic />,
+            graphic: <BespokeArchGraphic title="Bespoke Architecture" subtitle="Building…" />,
     }
   ];
 
