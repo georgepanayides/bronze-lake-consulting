@@ -3,6 +3,8 @@
 import { useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
+import { SEOGrowth } from "@/components/graphics/illustrations/SEOGrowth";
+import { PPCGraphic } from "../graphics/illustrations/PPCGraphic";
 
 export type CapabilityTab = {
 	id: string;
@@ -37,11 +39,7 @@ export function CapabilitiesTabs({
 
 	return (
 		<div className="grid grid-cols-1">
-			<nav
-				role="tablist"
-				aria-label={ariaLabel}
-				className="w-full"
-			>
+			<nav role="tablist" aria-label={ariaLabel} className="w-full">
 				<div className="grid grid-cols-2 md:grid-cols-3 gap-px overflow-hidden bg-bl-cream-200 border-b border-bl-cream-200">
 					{tabs.map((tab, index) => {
 						const isActive = tab.id === activeTab?.id;
@@ -101,7 +99,7 @@ export function CapabilitiesTabs({
 						animate={{ opacity: 1, y: 0 }}
 						exit={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: -8 }}
 						transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.28, ease: "easeOut" }}
-						className="bg-white p-6 md:p-10 text-center"
+						className="bg-white px-12 text-center pt-12"
 					>
 						<header>
 							<h3 className="text-xl md:text-2xl font-libre text-bl-navy uppercase tracking-wide">
@@ -130,7 +128,7 @@ function TabAnimation({
 	prefersReducedMotion: boolean;
 }) {
 	return (
-		<div className="relative h-44 md:h-60 w-full overflow-hidden rounded-md border border-bl-cream-200 bg-bl-cream-50">
+		<div className="relative h-44 md:h-90 w-full overflow-hidden rounded-t border border-bl-cream-200 bg-bl-cream-50 border-b-0">
 			<div className="absolute inset-0 pointer-events-none opacity-[0.55] bg-[radial-gradient(var(--color-bl-cream-200)_1px,transparent_1px)] [background-size:22px_22px]" />
 
 			<motion.div
@@ -138,12 +136,12 @@ function TabAnimation({
 				initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
 				animate={{ opacity: 1 }}
 				transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.25, ease: "easeOut" }}
-				className="absolute inset-0"
+				className="absolute inset-0 p-6 pb-0"
 			>
 				{tabId === "seo" ? (
-					<SearchPulse prefersReducedMotion={prefersReducedMotion} />
+					<SEOGrowth prefersReducedMotion={prefersReducedMotion} />
 				) : tabId === "paid" ? (
-					<FunnelPulse prefersReducedMotion={prefersReducedMotion} />
+					<PPCGraphic prefersReducedMotion={prefersReducedMotion} />
 				) : tabId === "cro" ? (
 					<ChartRise prefersReducedMotion={prefersReducedMotion} />
 				) : tabId === "email" ? (
@@ -183,34 +181,6 @@ function EndToEnd({ prefersReducedMotion }: { prefersReducedMotion: boolean }) {
 						</div>
 					</motion.div>
 				))}
-			</div>
-		</div>
-	);
-}
-
-function SearchPulse({ prefersReducedMotion }: { prefersReducedMotion: boolean }) {
-	return (
-		<div className="absolute inset-0 flex items-center justify-center">
-			<div className="relative w-[280px] max-w-[86%]">
-				<div className="rounded-md border border-bl-cream-200 bg-white/85 backdrop-blur-sm px-4 py-3">
-					<p className="text-[10px] font-archivo uppercase tracking-widest text-bl-navy/60">SEARCH INTENT</p>
-					<div className="mt-2 h-2 w-full rounded-full bg-bl-cream-200 overflow-hidden">
-						<motion.div
-							className="h-full bg-bl-bronze-75"
-							initial={{ width: "28%" }}
-							animate={prefersReducedMotion ? { width: "62%" } : { width: ["28%", "68%", "62%"] }}
-							transition={prefersReducedMotion ? { duration: 0 } : { duration: 1.6, ease: "easeInOut", repeat: Infinity, repeatDelay: 0.4 }}
-						/>
-					</div>
-				</div>
-
-				<motion.div
-					aria-hidden
-					className="absolute -right-5 -top-5 h-10 w-10 rounded-full border border-bl-cream-200 bg-white"
-					initial={{ scale: 1, opacity: 0.7 }}
-					animate={prefersReducedMotion ? { scale: 1, opacity: 0.7 } : { scale: [1, 1.06, 1], opacity: [0.55, 0.85, 0.55] }}
-					transition={prefersReducedMotion ? { duration: 0 } : { duration: 1.3, ease: "easeInOut", repeat: Infinity }}
-				/>
 			</div>
 		</div>
 	);
